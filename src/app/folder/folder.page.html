@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Datetime Issue</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Datetime Issue</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list id="container">
+
+    <ion-item>
+      <ion-label position="stacked">Options</ion-label>
+      <ion-select placeholder="Select an option" 
+                  multiple="false" 
+                  [(ngModel)]="SelectedOption" 
+                  [disabled]="Options?.length == 0"
+                  (ionChange)="OnChangeOption($event)">
+          <ion-select-option *ngFor="let option of Options" [value]="option">
+              {{ option }}
+          </ion-select-option>
+      </ion-select>
+  </ion-item> 
+
+
+    <ion-item>
+      <ion-label position="stacked">Date</ion-label>
+  
+      <ion-input id="open-modal-datetime" [value]="SelectedDate | date: 'dd-MM-YYYY' " placeholder="Select a date" readonly></ion-input>
+      
+      <ion-modal trigger="open-modal-datetime" cssClass="modal-datetime">
+          <ng-template>
+              <ion-content>
+                  <ion-datetime presentation="date" 
+                                cancelText="Cancel" 
+                                doneText="Confirm" 
+                                locale="pt-PT" 
+                                [showDefaultButtons]="true"
+                                [(ngModel)]="SelectedDate"
+                                (ionChange)="OnChangeDate($event)">
+                  </ion-datetime>
+              </ion-content>
+          </ng-template>
+      </ion-modal>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>

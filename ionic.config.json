@@ -1,0 +1,7 @@
+{
+  "name": "TesteIonic6DatePiker",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
